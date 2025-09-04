@@ -12,6 +12,7 @@ Some fun facts about me:
 3. The bold guy below is my favorite cartoon character
 
 <img src="assets/aang.jpg" alt="aang" width="200" />.
+
 4. I'm really fond of silly cats.
 
 # Goals for the semester
