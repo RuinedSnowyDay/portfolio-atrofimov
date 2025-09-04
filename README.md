@@ -3,7 +3,7 @@
 Chemistry and Computer Science, great to see you there! I'm interested in ways in
 which software development and machine learning can augment research and development
 in chemistry, in both industrial and academic environments. My other interests are
-computational chemistry, HCI, and music.*
+quantum science, HCI, and music.*
 
 Some fun facts about me:
 1. My favorite book is *The Gambler* by Fyodor Dostoevsky.
