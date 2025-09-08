@@ -176,4 +176,104 @@ even when just exploring new ideas.
    it is interesting to compare the intellectual value of taking notes using pen and
    paper versus typesetting them. There are many possibilities to explore here, from
    web-apps similar to [Overleaf](https://www.overleaf.com/) to embedded plug-ins that
-   provide interactive assistance while writing in LaTeX.
+   provide interactive assistance while writing in LaTeX. One thing that would be
+   interesting to emulate is the Microsoft Word's equation editor, which provides a
+   WYSIWYG interface for writing math, but it is not flexible and powerful enough to
+   be used seriously (though I had used it for a whole term once!)
+
+### The problems I *didn't choose*
++ *Parasocial interactions disrupt social connections*. While this problem is
+  interesting, it can create kind of a dependency loop, where people who are already
+  struggling with social connections will try to use an app to fix their situation,
+  but the app itself may become a source of parasocial interactions, so the solution
+  to this problem should be more systemic, involving in-person interactions and
+  potentially assistance from specialists.
++ *Barriers to starting therapy*. This problem is also interesting, but it is very
+  multifaceted, and the solution to it should include many aspects, such as message
+  framing, cost reduction, convenience, and motivation, so it is hard to tackle it in
+  a simple way.
++ *Setting up disciplined learning routines and sticking to them*. This problem is
+  important, but there are two problems. Firstly, it is very personal, and it is hard
+  to come up with a solution that would work for many people. Secondly, there are
+  already many organizational apps that can help with this, such as Notion, many
+  variations of to-do lists, calendar apps, etc.
++ *Tracking the progress of learning*. As well as the previous problem, this one is
+  very personal and depends on the specific topic one is learning, so it is hard to
+  generalize the procedure of tracking the progress. Maybe LLMs could help with
+  generating quizzes and exercises, but it is not much different from just prompting
+  it to a chat interface.
++ *LaTeX is morally and technically outdated*. This problem is very broad, and
+  requires literally creating a new typesetting language, which is a huge task. This
+  task is not impossible, and there are efforts in this direction already, such as
+  [typst](https://typst.app/)
++ *Integrating AI tools into the typesetting workflow*. This problem is very
+  prospective, because LLMs are still not perfect at writing highly technical novel
+  documents, and the development of such tools would require expertise from AI,
+  typesetting, and scientific writing domains, so it is unbearably hard to do it
+  alone.
+
+## Stakeholders
+1. *Misuse of LLMs for mental health support*
+   + People who are struggling with mental health issues and are looking for support
+     and advice, but can't get professional help.
+   + Mental health professionals, who can either benefit from people getting into
+     therapy because of the positive experience with LLMs (or people who got harmful
+     advice from LLMs and now need more help), or can lose clients to LLMs.
+   + Providers of LLMs, who can be interested in fine-tuning their models to be more
+     helpful and less harmful, or who can potentially be held accountable for the harm
+     caused by their models.
+2. *Searching for and creating structured learning paths*
+   + Students and self-learners, who need to build a mental map or a roadmap for their
+     learning projects, and can benefit from other people's shared roadmaps.
+   + Educational institutions, who can experience a shift in how students learn, and
+     how people use their publicly available resources.
+   + App that provide similar roadmaps for studying, and educational apps in general.
+3. *Typesetting math is very different from writing math on paper*
+   + Students, researchers, and engineers, who are constantly dealing with writing
+     highly technical documents, or just want to take notes in a more efficient way.
+   + Providers of typesetting tools, such as Overleaf, who can benefit from
+     integrating interactive typesetting features into their platforms, or lose
+     users because of the emergence of better tools.
+   + Educational institutions, who can benefit from students and educators being able
+     to more easily typeset assignments, lecture notes, and other documents.
+
+## Evidence
+### Misuse of LLMs for mental health support
++ [Dartmouth University](https://ai.nejm.org/doi/full/10.1056/AIoa2400802)
+  conducted a clinical trial of a therapy chatbot, which showed promising results for
+  treating major depressive disorder, generalized anxiety disorder, and clinically
+  high risk for feeding and eating disorders.
++ This [Phychiatric Times](https://www.psychiatrictimes.com/view/preliminary-report-on-chatbot-iatrogenic-dangers)
+  article discusses the potential dangers of using chatbots and points to the lack of
+  oversight from mental health professionals in this area.
++ [This viewpoint](https://www.sciencedirect.com/science/article/pii/S2589750024002553)
+  provides model-agnostic guidelines for the responsible use of LLMs in mental health
+  care.
++ This [Stanford Prepring](https://arxiv.org/abs/2504.18412) points out that current
+  publically available chat bots have stigma towards mental health issues, and can
+  provide inappropriate care, e.g. encourage delusional thinking.
++ There is an [open investigation](https://texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-investigates-meta-and-characterai-misleading-children-deceptive-ai)
+  that looks whether Meta and Character.ai are violating consumer protection laws by
+  inappropriately marketing their AI chatbots as a source of mental health support.
++ Some people become
+  [emotionally dependent](https://www.reddit.com/r/replika/comments/18661bt/emotional_dependence/)
+  on their AI companions, which can be harmful to their mental health.
++ There a stories of people who commited suicide, potentially because of
+  [AI psychosis](https://www.pbs.org/newshour/show/what-to-know-about-ai-psychosis-and-the-effect-of-ai-chatbots-on-mental-health)
+
+### Searching for and creating structured learning paths
++ Existence of such projects as [NeetCode](https://neetcode.io/) and their success
+  suggests that this approach is popular and effective
++ From *Ultralearning* by Scott Young, building a mind map and a path to the
+  goal of learning is essential for learning new things.
++ [Training roadmaps](https://www.togetherplatform.com/blog/what-is-a-training-roadmap-definition-types-and-benefits)
+  for employees were shown to increase productivity and job performance.
++ Building roadmaps can help [in research](https://scholarlyintegrity.princeton.edu/students/cultivating-study-habits/research-process-roadmap)
+  by splitting the large project into many manageable steps
++ Access to other people's roadmaps leverages
+  [cooperative learning](https://www.nshss.org/resources/blog/blog-posts/5-benefits-of-collaborative-learning-strategies-how-to-get-started/)
+  which is shown to be effective
++ People discuss that while roadmaps are useful, they sometimes can be too
+  [opinionated and subjective](https://www.reddit.com/r/learnprogramming/comments/1jjtfog/are_roadmaps_still_relevant/)
++ Roadmaps help visualize the big picture of learning projects, which
+  [helps in the process itself](https://drieam.com/en/guides/visualization-of-the-learning-process/)
