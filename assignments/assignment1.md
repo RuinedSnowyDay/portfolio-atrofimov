@@ -91,7 +91,7 @@ My domains of choice are:
    figure out how to make its usage more ergonomic and efficient, so that I can focus
    on the intellectual work, rather than the intricacies of the language. With this
    experience, I could clearly see the pain points of LaTeX, and maybe I can come up
-   with something useful, maybe even for other typesetting languages, such as typst.
+   with something useful, maybe even for other typesetting languages.
 
 ## Problems
 ### Mental health and well-being in the age of social media and AI
@@ -149,3 +149,28 @@ and measurable. This is especially important for self-directed learning, when th
 are no such things as exams, grades, or other external ways to assess the progress.
 This way, there is a need for a benchmarking system that one can customize for their
 own learning goals and be able to track the progress over time.
+
+### Efficient and pleasant typesetting
+#### Problem 1: LaTeX is morally and technically outdated
+LaTeX was created in 1980s, and it is still widely used today. However, it has many
+parts that one could consider non-ergonomic and outdated, such as the lack of
+interactive interfaces, slow compilation times, unintuitive and verbose syntax, and
+the package configuration process that brings a lot of pain.
+
+#### Problem 2: Integrating AI tools into the typesetting workflow
+AI agents permeated the ecosystem of software development tools, and their emergence
+requires rethinking the workflows of many simple tasks, such as tracking the progress
+or debugging. This demand for integration gave rise to many exciting products such
+as Copilot or Cursor. Generative AI is not yet exceptionally good at writing
+math- or science-heavy texts, but being an accelerationist, I believe that such tools
+may be helpful in the future, when we will be ready to entrust writing, formatting,
+and reviewing novel scientific texts to AI agents.
+
+#### Problem 3: Typesetting math is very different from writing math on paper
+When one writes math on paper, they can create empty spaces for symbols or formulas,
+quickly jump between one part of the formula to another, and instantly see the result
+of their writing. In LaTeX, what one writes is very different from what one sees in
+the final output, and also because of the long compilation times, it is hard to
+instantly see the result of one's work, which can be frustrating, especially under
+time pressure, as in the case of typesetting lecture notes or homework assignments, or
+even when just exploring new ideas.
