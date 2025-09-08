@@ -1,15 +1,13 @@
 # Assignment 1
 ## Domains
-+ **Mental health and well-being for students in the age of social media and AI**.
++ **Mental health and well-being in the age of social media and AI**.
   Overreliance on social media, parasocial relationships, as well as atomization of
   social groups due to strong political and ideological polarization have made it hard
   to maintain a healthy and reliable support network, especially for young people, who
   additionally have to endure both academic and employment pressures. The problem is
   exacerbated for students, because their circles are frequently limited to their
   peers, who are often in the same situation. Therapy should be a solution to this,
-  but there are several barriers, such as cost, inconvenience, long waiting times,
-  and, as in my personal experience, the fear of making a leap of faith and trying it
-  for the first time.
+  but there exist several barriers to starting it.
 + **Direction in studying and learning**. I and many other students find it interesting
   to learn about new topics, this is natural and good, but it is usally hard to find a
   good starting point, decide what's the final goal of learning about something, build
@@ -18,7 +16,7 @@
   learn about new topics such as machine learning. System of higher education can help
   with this, but this help is often limited by the scope of classes, which rarely
   cover state-of-the-art topics and can be rigid.
-+ **Efficient and pleasant math typesetting**: many students, researchers, and
++ **Efficient and pleasant typesetting**: many students, researchers, and
   engineers have to write math-heavy documents, such as homework assignments, research
   papers, documentation, etc. The most popular tool for this is LaTeX, which is a
   powerful markup language, but it has its downsides, such as a steep learning curve
@@ -76,7 +74,9 @@ My domains of choice are:
    Finally, I can observe that LLMs have an ambivalent effect on mental health domain:
    on one hand, there is direct evidence that they can mitigate symptoms of anxiety and
    depression, but on the other hand, the misuse of LLMs can exacerbate social
-   isolation and give harmful advice.
+   isolation and give harmful advice. Also, I personally experienced interacting with
+   people who used LLMs while having mental health issues, and I could observe how
+   LLMs made their situation worse.
 2. *Direction in study and learning*. Recently I've read a book called *Ultralearning* by
    Scott Young, which describes the approaches and strategies of efficient
    self-directed learning. It strongly resonated with me, because I saw many of these
@@ -94,8 +94,33 @@ My domains of choice are:
    with something useful, maybe even for other typesetting languages, such as typst.
 
 ## Problems
-### Mental health and well-being for students in the age of social media and AI
+### Mental health and well-being in the age of social media and AI
 #### Problem 1: The misuse of LLMs for mental health support
 While LLMs are good for professional and casual conversations, thay can't replace real
-people when dealing with personal and mental health issues.
+people when dealing with personal and mental health issues. They tend to agree with
+the user, and depending on the input prompt or fine-tuning data, they can give
+harmful advice, maybe even harmful to other people. LLM chatbots are widely available
+today and can handle variety of tasks, so it is natural that people would try to use
+them as a substitute for real therapy or even real friends and family. At the same
+time, there is evidence that LLMs can be helpful for people with mild symptoms of
+anxiety and depression, so the problem is not that LLMs are inherently bad, but that
+they are misused and overrelied on.
 
+#### Problem 2: Parasocial interactions disrupt social connections
+[Parasocial relationships](https://en.wikipedia.org/wiki/Parasocial_interaction) are
+a relatively new concept, describing relationships that people form with personas
+existing in media sphere, such as famous people, influencers, streamers, etc. These
+can act as a strong substitute for real social connections, especially for introverted
+people. These interactions are entwined with social media usage, which can lead to
+comparison with others, fear of missing out, cyberbullying, and other negative effects
+which make the isolation even worse.
+
+#### Problem 3: Barriers to starting therapy
+There are many barriers to starting therapy such as cost, inconvenience, long waiting
+times, and, as in my personal experience, the fear of making a leap of faith and
+trying it for the first time. There is also a stigma around mental health issues and
+therapy in particular, which deters people from seeking help. This is also related to
+the problem of
+[parasocial interactions](#problem-2-parasocial-interactions-disrupt-social-connections),
+as some influencers can promote negative images of therapy and mental health issues,
+to the detriment of their audience.
