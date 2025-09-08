@@ -50,7 +50,7 @@
   working outside of my dorm, because I can submerge myself into a working environment
   and reduce self-distraction; however, it is sometimes hard to pick a right place to
   work, as my preference depends on many feature: crowdedness, access to monitor,
-  presence of collaborative study rooms etc. 
+  presence of collaborative study rooms etc.
 + **Longevity for non-academia people**: more and more people are interested in
   prolonging their lifespan, but the information is spread across many sources
   (research papers, youtube videos, news, etc), so it is hard to keep track of current
@@ -124,3 +124,28 @@ the problem of
 [parasocial interactions](#problem-2-parasocial-interactions-disrupt-social-connections),
 as some influencers can promote negative images of therapy and mental health issues,
 to the detriment of their audience.
+
+### Direction in studying and learning
+#### Problem 1: Searching for and creating structured learning paths
+It is hard not only to find good starting point for learning about a new topic, but
+also to figure out how to proceed further and reach the desired level of proficiency.
+For specific topics, such as programming, there are many resources and tutorials that
+can help with this, e.g. [NeetCode](https://neetcode.io/) that provides a whole
+roadmap for preparing for coding interviews, but it is limited to problems that are
+created and hosted on LeetCode platform and lacks customization and misses the social
+aspect of learning, replacing it with a fixed set of exercises. Roadmaps for learning
+other topics are either more vague, or not interactive and static, and sometimes even
+nonexistent.
+
+#### Problem 2: Setting up disciplined learning routines and sticking to them
+The lack of self-organization and discipline is a common problem for many people who
+are trying to learn something on their own. The reasons for that can be different:
+from poor time management to not truly understanding and embracing why one wants to
+learn specific things.
+
+#### Problem 3: Tracking the progress of learning
+Essential part that motivates people to learn is that the progress should be visible
+and measurable. This is especially important for self-directed learning, when there
+are no such things as exams, grades, or other external ways to assess the progress.
+This way, there is a need for a benchmarking system that one can customize for their
+own learning goals and be able to track the progress over time.
