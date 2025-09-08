@@ -100,15 +100,6 @@ professional and casual conversations, thay can't replace real people when deali
 with personal and mental health issues, which is a problem given their abundance and
 availability.
 
-They tend to agree with
-the user, and depending on the input prompt or fine-tuning data, they can give
-harmful advice, maybe even harmful to other people. LLM chatbots are widely available
-today and can handle variety of tasks, so it is natural that people would try to use
-them as a substitute for real therapy or even real friends and family. At the same
-time, there is evidence that LLMs can be helpful for people with mild symptoms of
-anxiety and depression, so the problem is not that LLMs are inherently bad, but that
-they are misused and overrelied on.
-
 **Problem 2:** *Parasocial interactions disrupt social connections*.
 [Parasocial relationships](https://en.wikipedia.org/wiki/Parasocial_interaction) are
 a relatively new concept, describing relationships that people form with personas
@@ -126,13 +117,6 @@ and trying it for the first time.
 It is hard not only to find good starting point for learning about a new topic, but
 also to figure out how to proceed further and reach the desired level of proficiency.
 
-For specific topics, such as programming, there are many resources and tutorials that
-can help with this, e.g. [NeetCode](https://neetcode.io/) that provides a whole
-roadmap for preparing for coding interviews, but it is limited to problems that are
-created and hosted on LeetCode platform and lacks customization and misses the social
-aspect of learning, replacing it with a fixed set of exercises. Roadmaps for learning
-other topics are either more vague, or not interactive and static, and sometimes even
-nonexistent.
 
 **Problem 2**: *Setting up disciplined learning routines and sticking to them*.
 The lack of self-organization and discipline is a common problem for many people who
@@ -168,4 +152,28 @@ time pressure, as in the case of typesetting lecture notes or homework assignmen
 even when just exploring new ideas.
 
 ### My choice of problems
-1. *The misuse of LLMs for mental health support*. This problem is interesting
+1. *The misuse of LLMs for mental health support*. This problem is interesting because
+   it is very relevant and ambivalent: on one hand, LLMs can be helpful for people who
+   experience mild stress or need to vent, but on the other hand, they can give
+   harmful advice, exacerbate social isolation, and prevent people from seeking real
+   help. It is also impossible to prevent people from using LLMs in this way on the
+   level of chatbot providers, so the solution to this should be constructive, not
+   prohibitive. They tend to agree with the user, and depending on the input prompt or
+   fine-tuning data, they can give harmful advice, maybe even harmful to other people
+   (see [emergent misalignment](https://arxiv.org/abs/2502.17424))
+2. *Searching for and creating structured learning paths*. I like this problem,
+   because it allows for generalization of interactive and structured approaches, that
+   are observed only in certain areas. For specific topics, such as programming,
+   there are many resources and tutorials that can help with this, e.g.
+   [NeetCode](https://neetcode.io/) that provides a whole roadmap for preparing for
+   coding interviews, but it is limited to problems that are created and hosted on
+   LeetCode platform and lacks customization and misses the social aspect of learning,
+   replacing it with a fixed set of exercises. Roadmaps for learning other topics are
+   either more vague, or not interactive and static, and sometimes even nonexistent.
+3. *Typesetting math is very different from writing math on paper*. I'm really
+   interested in this problem, because I personally went through the nine circles of
+   hell iterating multiple times to find a workflow that would work for me, and also
+   it is interesting to compare the intellectual value of taking notes using pen and
+   paper versus typesetting them. There are many possibilities to explore here, from
+   web-apps similar to [Overleaf](https://www.overleaf.com/) to embedded plug-ins that
+   provide interactive assistance while writing in LaTeX.
