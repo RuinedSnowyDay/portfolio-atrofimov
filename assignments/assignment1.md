@@ -277,3 +277,22 @@ even when just exploring new ideas.
   [opinionated and subjective](https://www.reddit.com/r/learnprogramming/comments/1jjtfog/are_roadmaps_still_relevant/)
 + Roadmaps help visualize the big picture of learning projects, which
   [helps in the process itself](https://drieam.com/en/guides/visualization-of-the-learning-process/)
+
+### Typesetting math is very different from writing math on paper
++ LaTeX is widely popular in academia and science
++ Online typesetting tools such as Overleaf are widely used and
+  mitigate some of the pain points of LaTeX, particularly with the math typesetting
++ Non-ergonomic parts of LaTeX led to the usage of special plugins that make
+  writing math equations faster, check [this blog](https://castel.dev/)
++ People still widely use Microsoft Word's equation editor, despite its
+  limitations, because of its WYSIWYG interface
++ It has been shown that handwritten notes are
+  [better](https://pmc.ncbi.nlm.nih.gov/articles/PMC11943480/) for learning than
+  typed, and math typesetting in LaTeX in its current form is even more different from
+  handwriting than just typing plain text
++ There are attempts to create interactive WYSIWYG math editors, such as
+  [Mathcha](https://www.mathcha.io/), but they produce results that are not visually
+  appealing, not flexible enough, and potentially can be incompatible with LaTeX
++ There are attempts to create new typesetting languages, such as
+  [Typst](https://typst.app/), that make math setting more ergonomic, but they
+  still share similar issue of the lack of interactivity
