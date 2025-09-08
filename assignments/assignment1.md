@@ -296,3 +296,53 @@ even when just exploring new ideas.
 + There are attempts to create new typesetting languages, such as
   [Typst](https://typst.app/), that make math setting more ergonomic, but they
   still share similar issue of the lack of interactivity
+
+## Features
+### Misuse of LLMs for mental health support
+#### Assesment feature
+LLMs can be used to asses the mental state of the user, by asking them a series of
+questions, and then providing feedback on their mental state. This can determine
+whether the user needs professional help, or whether they can benefit from self-help
+or support from AI chatbot.
+
+#### Psychological benchmarks feature
+The app can present current performance of different LLMs on psychological
+benchmarks, which could help users make a more informed choice of which model to use for
+mental health support.
+
+#### Chat bot with LLM fine-tuned for mental health support
+The app can provide a chat bot that is fine-tuned for mental health support, and
+that can provide appropriate responses to users who are struggling with mental health
+issues. The chat bot should also be designed to aviod giving harmful advice, and to
+encourage users to seek professional help when needed.
+
+## Searching for and creating structured learning paths
+#### Roadmap creation feature
+The app can provide a feature that allows users to create their own learning
+roadmaps, by specifying the topic they want to learn, the final goal, the connections
+between different subtopics, resources for learning, and benchmarks for assessing the
+progress.
+
+#### Roadmap sharing feature
+The app can provide a feature that allows users to share their learning roadmaps with
+other users, and to browse and search for roadmaps created by other users. Optionally,
+users should also be able to share their progress on the roadmaps they are following.
+
+#### Roadmup discussion feature
+Users should be able to discuss roadmaps, ask questions, and provide feedback on
+others' roadmaps, which can help improve the quality of the roadmaps and promote
+cooperative learning.
+
+## Typesetting math is very different from writing math on paper
+#### Interactive math editor feature
+The app can provide an interactive math editor that allows users to write math
+as in Microsoft Word's equation editor, but with LaTeX math code produced in
+real time
+
+#### Online LaTeX compilation feature
+The app can provide an online LaTeX compilation feature that allows users to
+compile their LaTeX documents and get PDF as an output, potentially with a preview.
+
+#### Collaborative editing feature
+The app can provide a collaborative editing feature that allows multiple users
+to work on the same LaTeX document simultaneously, similar to Overleaf.
