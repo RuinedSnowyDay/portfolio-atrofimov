@@ -95,9 +95,12 @@ My domains of choice are:
 
 ## Problems
 ### Mental health and well-being in the age of social media and AI
-#### Problem 1: The misuse of LLMs for mental health support
-While LLMs are good for professional and casual conversations, thay can't replace real
-people when dealing with personal and mental health issues. They tend to agree with
+**Problem 1**: *The misuse of LLMs for mental health support*. While LLMs are good for
+professional and casual conversations, thay can't replace real people when dealing
+with personal and mental health issues, which is a problem given their abundance and
+availability.
+
+They tend to agree with
 the user, and depending on the input prompt or fine-tuning data, they can give
 harmful advice, maybe even harmful to other people. LLM chatbots are widely available
 today and can handle variety of tasks, so it is natural that people would try to use
@@ -106,29 +109,23 @@ time, there is evidence that LLMs can be helpful for people with mild symptoms o
 anxiety and depression, so the problem is not that LLMs are inherently bad, but that
 they are misused and overrelied on.
 
-#### Problem 2: Parasocial interactions disrupt social connections
+**Problem 2:** *Parasocial interactions disrupt social connections*.
 [Parasocial relationships](https://en.wikipedia.org/wiki/Parasocial_interaction) are
 a relatively new concept, describing relationships that people form with personas
 existing in media sphere, such as famous people, influencers, streamers, etc. These
 can act as a strong substitute for real social connections, especially for introverted
-people. These interactions are entwined with social media usage, which can lead to
-comparison with others, fear of missing out, cyberbullying, and other negative effects
-which make the isolation even worse.
+people, which can be detrimantal to their mental health.
 
-#### Problem 3: Barriers to starting therapy
+**Problem 3**: *Barriers to starting therapy*.
 There are many barriers to starting therapy such as cost, inconvenience, long waiting
-times, and, as in my personal experience, the fear of making a leap of faith and
-trying it for the first time. There is also a stigma around mental health issues and
-therapy in particular, which deters people from seeking help. This is also related to
-the problem of
-[parasocial interactions](#problem-2-parasocial-interactions-disrupt-social-connections),
-as some influencers can promote negative images of therapy and mental health issues,
-to the detriment of their audience.
+times, stigma, and, as in my personal experience, the fear of making a leap of faith
+and trying it for the first time.
 
 ### Direction in studying and learning
-#### Problem 1: Searching for and creating structured learning paths
+**Problem 1**: *Searching for and creating structured learning paths*.
 It is hard not only to find good starting point for learning about a new topic, but
 also to figure out how to proceed further and reach the desired level of proficiency.
+
 For specific topics, such as programming, there are many resources and tutorials that
 can help with this, e.g. [NeetCode](https://neetcode.io/) that provides a whole
 roadmap for preparing for coding interviews, but it is limited to problems that are
@@ -137,36 +134,31 @@ aspect of learning, replacing it with a fixed set of exercises. Roadmaps for lea
 other topics are either more vague, or not interactive and static, and sometimes even
 nonexistent.
 
-#### Problem 2: Setting up disciplined learning routines and sticking to them
+**Problem 2**: *Setting up disciplined learning routines and sticking to them*.
 The lack of self-organization and discipline is a common problem for many people who
 are trying to learn something on their own. The reasons for that can be different:
 from poor time management to not truly understanding and embracing why one wants to
 learn specific things.
 
-#### Problem 3: Tracking the progress of learning
+**Problem 3**: *Tracking the progress of learning*.
 Essential part that motivates people to learn is that the progress should be visible
 and measurable. This is especially important for self-directed learning, when there
 are no such things as exams, grades, or other external ways to assess the progress.
-This way, there is a need for a benchmarking system that one can customize for their
-own learning goals and be able to track the progress over time.
 
 ### Efficient and pleasant typesetting
-#### Problem 1: LaTeX is morally and technically outdated
+**Problem 1**: *LaTeX is morally and technically outdated*.
 LaTeX was created in 1980s, and it is still widely used today. However, it has many
 parts that one could consider non-ergonomic and outdated, such as the lack of
 interactive interfaces, slow compilation times, unintuitive and verbose syntax, and
 the package configuration process that brings a lot of pain.
 
-#### Problem 2: Integrating AI tools into the typesetting workflow
+**Problem 2**: *Integrating AI tools into the typesetting workflow*.
 AI agents permeated the ecosystem of software development tools, and their emergence
 requires rethinking the workflows of many simple tasks, such as tracking the progress
-or debugging. This demand for integration gave rise to many exciting products such
-as Copilot or Cursor. Generative AI is not yet exceptionally good at writing
-math- or science-heavy texts, but being an accelerationist, I believe that such tools
-may be helpful in the future, when we will be ready to entrust writing, formatting,
-and reviewing novel scientific texts to AI agents.
+or debugging, so one can expect that soon, when the LLMs will be even more powerful,
+such tools may become a demand for efficient writing and typesetting as well.
 
-#### Problem 3: Typesetting math is very different from writing math on paper
+**Problem 3**: *Typesetting math is very different from writing math on paper*.
 When one writes math on paper, they can create empty spaces for symbols or formulas,
 quickly jump between one part of the formula to another, and instantly see the result
 of their writing. In LaTeX, what one writes is very different from what one sees in
@@ -174,3 +166,6 @@ the final output, and also because of the long compilation times, it is hard to
 instantly see the result of one's work, which can be frustrating, especially under
 time pressure, as in the case of typesetting lecture notes or homework assignments, or
 even when just exploring new ideas.
+
+### My choice of problems
+1. *The misuse of LLMs for mental health support*. This problem is interesting
