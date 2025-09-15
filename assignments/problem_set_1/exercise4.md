@@ -78,6 +78,31 @@ need not be unique, and many short URLs can lead to the same long URL.
 Here the important invariant is that a person can't start a new session if he is in
 another active session.
 
-##
+## Conference Room Booking
+
+**concept** `RoomBooking[User, Time, Room]`\
+**purpose** users can book a conference room for a specific time period\
+**principle**\
+  User books an available conference room for a specific time period;\
+  User uses the room for the specified time period;\
+  User can cancel a booking.
+
+**state**\
+  a set of `Booking`s with\
+    a `room` `Room`\
+    a `start` `Time`\
+    an `end` `Time`\
+    a `user` `User`\
+
+**actions**\
+  `bookRoom` (`room`: `Room`, `start`: `Time`, `end`: `Time`, `user`: `User`): (`booking`: `Booking`)\
+    **requires** there is no `Booking` with the provided `room` and overlapping time\
+      period\
+    **effects** adds a new `Booking` with the provided `room`, `start`, `end`, and\
+      `user` to the set of `Booking`s\
+\
+  `cancelBooking` (`booking`: `Booking`)\
+    **requires** nothing\
+    **effects** removes the `Booking` from the set of `Booking`s
 
 [Back to main](main.md)
