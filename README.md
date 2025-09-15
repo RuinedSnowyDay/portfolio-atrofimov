@@ -25,4 +25,5 @@ Some fun facts about me:
 ![the cat that inspires me](https://i.pinimg.com/736x/86/2d/2d/862d2d26ce68755b583a292c66f7ef0e.jpg)
 
 # Table of Contents
-[Link to Assignment 1](assignments/assignment1.md)
++ [Link to Assignment 1](assignments/assignment1.md)
++ [Link to Problem Set 1](assignments/problem_set_1/main.md)
