@@ -43,3 +43,5 @@ for the same user, which is not possible in `PasswordAuthentication`.
 When I first created the GitHub access token, I was overwhelmed by the amount of
 information on the description page, so I would suggest to improve it by adding a
 tl;dr secetion for new and impatient users.
+
+[Back to main](main.md)

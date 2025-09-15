@@ -104,3 +104,5 @@ because these codes are unique by their nature, so there can be no confusion bet
 owner and purchaser, because the purchaser will now exactly what to purchase, given
 that the owner provided the correct SKU code. Also, prices and descriptions can be
 mutable, making them very inconvenient to store in the state.
+
+[Back to main](main.md)

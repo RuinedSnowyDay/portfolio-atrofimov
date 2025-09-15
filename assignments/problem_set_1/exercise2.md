@@ -79,3 +79,5 @@ To use this state, we need to add two new actions instead of just `register`:
     **effects** add a new `User` with the provided `username` and `password` to the set\
       of `User`s, remove the `SecretToken` from the set of `SecretToken`s, return the\
       new `User`
+
+[Back to main](main.md)
