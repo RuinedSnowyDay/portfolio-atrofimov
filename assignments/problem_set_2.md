@@ -72,6 +72,82 @@
    exactly when the resource (short URL in out case) is expired. When this happens,
    we want to remove the short URL and associated target URL from the set of
    `Shortening`s in the state of `UrlShortening` concept.\
-      **sync** `expire`\
-      **when** `ExpiringResource.expireResource` () : (`shortUrl` : `String`)\
-      **then** `UrlShortening.delete` (`shortUrl`)
+   \
+   **sync** `expire`\
+   **when** `ExpiringResource.expireResource` () : (`shortUrl` : `String`)\
+   **then** `UrlShortening.delete` (`shortUrl`)
+
+## Extending the Design
+
+1. To provide analytics about the usage of the certain shortened URL, and to make it
+   private to the user who created it, we need to add two new concepts: `Ownership`
+   and `UseAnalytics`.\
+   \
+   **concept** `Ownership` [`User`, `Item`]\
+   **purpose** track which items are owned by which users\
+   **principle** `User` can add an item and then be authorized to use it if they are\
+      the owner of the item\
+   **state**\
+      a set of `Ownership`s with\
+        an `owner` `User`\
+        an `item` `Item`\
+   **actions**\
+      `addOwnership` (`user`: `User`, `item`: `Item`)\
+         **requires** given `Item` is not owned by any `User`\
+         **effects** adds a new `Ownership` with the provided `user` and `item` to\
+           the set of `Ownership`s\
+      `authorize` (`user`: `User`, `item`: `Item`)\
+         **requires** a `user`-`item` pair is in the set of `Ownership`s\
+         **effect** authorizes the `user` to use the `item`\
+\
+   **concept** `UseAnalytics` [`Item`]\
+   **purpose** track how many times the certain item was used\
+   **principle** when an item is used, its usage count is incremented and can later\
+      be queried\
+   **state**\
+      a set of `ItemUsage`s with\
+        an `item` `Item`\
+        a `count` `Number`\
+   **actions**\
+      `addItem` (`item`: `Item`)\
+         **requires** nothing\
+         **effect** adds a new `ItemUsage` with the provided `item` and `count` 0 to\
+            the set of `ItemUsage`s\
+      `incrementUsage` (`item`: `Item`)\
+         **requires** `item` is in the set of `ItemUsage`s\
+         **effect** increments the usage `count` of the `item` in the set of\
+            `ItemUsage`s by 1.\
+      **query** `getUsage` (`item`: `Item`): (`count`: `Number`)\
+         **requires** there is a `ItemUsage` with the provided `item` in the set of
+            `ItemUsage`s
+         **effect** returns the usage `count` of the `item` in the set of `ItemUsage`s
+2. When shortening is created by the user, we want to add this `user`-`shortUrl` pair
+   to the set of `Ownership`s and add this `shortUrl` to the set of `ItemUsage`s to
+   keep track of the usage of this shortened URL\
+   \
+   **sync** `startAnalytics`\
+   **when**\
+      `Request.shortenUrl` (`user`)\
+      `UrlShortening.register` (): (`shortUrl`)\
+   **then**\
+      `Ownership.addOwnership` (`user`, `shortUrl`)\
+      `UseAnalytics.addItem` (`shortUrl`)\
+   \
+   When shortened URL is used, we want to increment the usage count of this shortened
+   URL\
+   \
+   **sync** `incrementUsage`\
+   **when** `UrlShortening.lookup` (`shortUrl`)\
+   **then** `UseAnalytics.incrementUsage` (`shortUrl`)\
+   \
+   Finally, when a user requests the usage of a shortened URL, we need to check if
+   they are the owner of the shortened URL, and if they are, then we return the usage
+   count\
+   \
+   **sync** `getUsage`\
+   **when**\
+      `Request.getUsage` (`user`, `shortUrl`)\
+      `Ownership.authorize` (`user`, `shortUrl`)\
+   **then** `UseAnalytics.getUsage` (`shortUrl`)
+3. Let's go through each feature one by one:
+   - Allowing the user to choose their own short URLs
