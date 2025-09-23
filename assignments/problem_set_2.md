@@ -150,4 +150,28 @@
       `Ownership.authorize` (`user`, `shortUrl`)\
    **then** `UseAnalytics.getUsage` (`shortUrl`)
 3. Let's go through each feature one by one:
-   - Allowing the user to choose their own short URLs
+   - Adding the functionality of allowing users to choose their own short URL is
+     straightforward, we need to add a new action to the `NonceGeneration`, called
+     `addString`, which will add a new `String` to the set of used `String`s for a
+      given context. We then can add a sync that for a request that actually does
+      provide a suffix and URL base, and then adds this suffix to the set of used
+      `String`s for this context.
+   - Using words a nonces is even more straightforward, we just need to statically
+     keep the set of words and use it to generate a random unique word for a given
+     context in the `NonceGeneration` concept. No other changes to syncs and concepts
+     are needed.
+   - Getting analytics about the usage of a target URL would require changes in two
+     syncs; first, in `startAnalytics` we need to add the ownership of the target URl,
+     not the shortened URL, and also to start the analytics for the target URL. Then,
+     in `incrementUsage` we need to increment the usage count for the target URL,
+     not the shortened URL.
+   - The most obvious way to make short URLs that are not easily guessed is to add
+     the ability to set minimum length of the nonce. Then, we can add new action to
+     the `NonceGeneration` concept, e.g. `generateMinLength`, which generates a nonce
+     with a length at least the provided minimum length and which is unique for the
+     given context. Other syncs should remain the same.
+   - If the creator of short URL isn't registered as user, it becomes unbearably
+     complicated to verify the ownership of the short URL, probably through IP address
+     or some other implicit unique identifier. This would require us to add new
+     concepts and syncs, so it's much more desirable to have a standard user
+     authentication concept in the system.
