@@ -43,3 +43,35 @@
    given context. This word is then returned as the nonce and added to the set of
    used `String`s for this context.
 
+## Synchronization Questions
+
+1. In the description of any concept or sync, we are trying to be as abstract and
+   concise as possible. Sync `generate`'s purpose is to produce a unique nonce for a
+   given context, which is, as mentioned previously, a short URL base. We don't need
+   information abouth the target URL to produce a nonce, so it is not included in the
+   arguments. However, both target URL and short URL base become relevant in the
+   `register` sync, so they both are included in the arguments.
+
+2. We don't use the convention of omitting the names of the arguments or results if
+   they are the same as the names of the parameters, because sometimes we want to
+   chain actions together and use output name different from the next input name,
+   and also sometimes the type of the argument is abstract, so we have to use the
+   concrete value inside the invocation of the action.
+
+3. `Request` is not included in the `setExpiry` sync, because it happens without any
+   additional input from the user side and is conditioned only on the previous
+   `register` sync that yields the `shortUrl`. This way, number of parameters is
+   reduced and excessive conditions are avoided.
+
+4. To remove the support of alternate domain names, we can remove the `shortUrlBase`
+   argument from `generate` and `register` syncs, and implicitly use the default
+   base domain (`bit.ly` or whatever is actually used) instead.
+
+5. The sync that makes the shortened URL invalid after a certain amount of time should
+   be conditioned on the **system** `expireResource` action, because it happens
+   exactly when the resource (short URL in out case) is expired. When this happens,
+   we want to remove the short URL and associated target URL from the set of
+   `Shortening`s in the state of `UrlShortening` concept.\
+      **sync** `expire`\
+      **when** `ExpiringResource.expireResource` () : (`shortUrl` : `String`)\
+      **then** `UrlShortening.delete` (`shortUrl`)
