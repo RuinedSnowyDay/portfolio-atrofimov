@@ -32,3 +32,4 @@ Some fun facts about me:
 
 + [Link to Assignment 1](assignments/assignment1.md)
 + [Link to Problem Set 1](assignments/problem_set_1/main.md)
++ [Link to Problem Set 2](assignments/problem_set_2.md)
