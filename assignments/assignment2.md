@@ -157,22 +157,23 @@ customized and enriched with resources, exercises, and benchmarks.
     that have the same associated `concept` as the provided `concept`\
     **effects** Adds a new indexed resource with the provided `resource` associated with\
       the provided `concept` and index `Number` that is one more than the last index\
-      of indexed resources associated with the provided `concept` to the set of indexed resources\
-      and returns the new indexed resource. If there were no indexed resources associated\
-      with the provided `concept`, the index is 0.\
+      of indexed resources associated with the provided `concept` to the set of indexed\
+      resources and returns the new indexed resource. If there were no indexed resources\
+      associated with the provided `concept`, the index is 0\
   `removeResource`(`concept`: `Node`, `resource`: `Resource`)\
-    **requires** There is indexed resource with the provided `resource` associated with provided\
-      `concept` in the set of indexed resources.\
+    **requires** There is indexed resource with the provided `resource` associated\
+      with provided `concept` in the set of indexed resources\
     **effects** Removes the provided `resource` from the set of resources\
-  `exchangeResources`(`indexedResource1`: `IndexedResource`, `indexedResource2`: `IndexedResource`)\
-    **requires** There are indexed resources with the provided `indexedResource1` and\
-      `indexedResource2` in the set of indexed resources\
+  `exchangeResources`(`idxResource1`: `IndexedResource`, `idxResource2`: `IndexedResource`)\
+    **requires** There are indexed resources with the provided `idxResource1` and\
+      `idxResource2` in the set of indexed resources\
     **action** Exchanges the indexes of the provided `indexedResource1` and\
       `indexedResource2` in the set of indexed resources.
 
-**concept** `RoadMapSharing` [`URL`, `User`]\
+**concept** `RoadMapSharing` [`URL`]\
 **purpose** Enable sharing of roadmaps through shareable URLs\
-**principle** Users can generate shareable URLs for their roadmaps and others can access them.\
+**principle** Users can generate shareable URLs for their roadmaps and others can access\
+  them.\
 **state**\
   a set of `SharedURL`s with\
     a roadmap `RoadMap`\
@@ -180,10 +181,28 @@ customized and enriched with resources, exercises, and benchmarks.
 **actions**\
   `generateShareLink`(`roadMap`: `RoadMap`): (`url`: `URL`)\
     **requires** nothing\
-    **effects** if there is not a `SharedURL` with the provided `roadMap` in the set of `SharedURL`s,\
-      generates a new unique `URL` and adds it to the set of `SharedURL`s associated with the\
-      provided `roadMap`. If there is a `SharedURL` with the provided `roadMap` in the set of\
-      `SharedURL`s, returns the `URL` associated with the provided `roadMap`\
+    **effects** if there is not a `SharedURL` with the provided `roadMap` in the set of\
+      `SharedURL`s, generates a new unique `URL` and adds it to the set of `SharedURL`s\
+      associated with the provided `roadMap`. If there is a `SharedURL` with the provided\
+      `roadMap` in the set of `SharedURL`s, returns the `URL` associated with the provided\
+      `roadMap`\
   `accessRoadMap`(`url`: `URL`): (`roadMap`: `RoadMap`)\
     **requires** There is a `SharedURL` with the provided `url` in the set of `SharedURL`s\
     **effects** Returns the `RoadMap` associated with the provided `URL`
+
+**concept** `ResourceProgress`\
+**purpose** Track the progress of learning resources associated with concepts\
+**principle** Users can mark resources as completed or incompleted\
+**state**\
+  a set of `ResourceProgress`s with\
+    a indexed resource `IndexedResource`\
+    a completed status `Boolean`\
+**actions**\
+  `markAsCompleted`(`resource`: `IndexedResource`)\
+    **requires** There is a `ResourceProgress` with the provided `resource` in the set\
+      of `ResourceProgress`s and its status is incomplete\
+    **effects** Marks the provided `resource` as completed\
+  `markAsIncomplete`(`resource`: `Resource`)\
+    **requires** There is a `ResourceProgress` with the provided `resource` in the set\
+      of `ResourceProgress`s and its status is completed
+    **effects** Marks the provided `resource` as incomplete
