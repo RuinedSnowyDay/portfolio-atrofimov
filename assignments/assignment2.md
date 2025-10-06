@@ -110,10 +110,10 @@ customized and enriched with resources, exercises, and benchmarks.
     **effects** Deletes the roadmap with the provided `roadMap`\
   `getUserRoadMap`(`user`: `User`, `title`: `String`): (`roadMap`: `RoadMap`)\
     **requires** User has a roadmap with the provided `title`\
-    **effects** Returns the roadmap with the provided `title`
+    **effects** Returns the roadmap with the provided `title`\
   `validateAccess`(`roadMap`: `RoadMap`, `user`: `User`)\
     **requires** User has the provided `roadMap`\
-    **effects** Validates the access to the provided `roadMap`\
+    **effects** Validates the access to the provided `roadMap`
 
 **concept** `ConceptGraph` [`Parent`]\
 **purpose** Manage the structure of concepts and their relationships within a parent structure (e.g. roadmap)\
@@ -134,7 +134,8 @@ customized and enriched with resources, exercises, and benchmarks.
     associated with the provided `roadMap`\
   `removeConcept`(`concept`: `Node`)\
     **requires** There is the provided `concept` in the set of nodes\
-    **effects** Removes the provided `concept` from the set of nodes\
+    **effects** Removes the provided `concept` from the set of nodes and all edges\
+      that have it as a source or target node\
   `addEdge`(`sourceConcept`: `Node`, `targetConcept`: `Node`)\
     **requires** There is no edge with the provided `sourceConcept` and\
        `targetConcept`, `sourceConcept` and `targetConcept` belong to the same roadmap\
@@ -143,7 +144,11 @@ customized and enriched with resources, exercises, and benchmarks.
   `removeEdge`(`sourceConcept`: `Node`, `targetConcept`: `Node`)\
     **requires** There is an edge between the provided `sourceConcept` and `targetConcept`\
     **effects** Removes the edge with the provided `sourceConcept` and `targetConcept` from\
-      the set of edges
+      the set of edges\
+  `clearGraph`(`parent`: `Parent`)\
+    **requires** nothing\
+    **effects** Removes all nodes that are associated with the provided `parent` from the set\
+      of nodes and all edges associated with such nodes from the set of edges
 
 **concept** `ResourceManager` [`Resource`, `Group`]\
 **purpose** Attach and manage resources associated with concepts (abstract groups)\
@@ -171,7 +176,11 @@ customized and enriched with resources, exercises, and benchmarks.
     **requires** There are indexed resources with the provided `idxResource1` and\
       `idxResource2` in the set of indexed resources\
     **action** Exchanges the indexes of the provided `idxResource1` and\
-      `idxResource2` in the set of indexed resources.
+      `idxResource2` in the set of indexed resources.\
+  `clearResources`(`group`: `Group`)\
+    **requires** nothing\
+    **effects** Removes all indexed resources associated with the provided `group` from the set\
+      of indexed resources
 
 **concept** `ResourceSharing` [`OnlineResource`, `URL`]\
 **purpose** Enable sharing of resources through shareable URLs\
@@ -191,7 +200,10 @@ customized and enriched with resources, exercises, and benchmarks.
       `onlineResource`\
   `accessResource`(`url`: `URL`): (`onlineResource`: `OnlineResource`)\
     **requires** There is a `SharedURL` with the provided `url` in the set of `SharedURL`s\
-    **effects** Returns the `OnlineResource` associated with the provided `URL`
+    **effects** Returns the `OnlineResource` associated with the provided `URL`\
+  `removeShareLink`(`onlineResource`: `OnlineResource`)\
+    **requires** There is a `SharedURL` with the provided `onlineResource` in the set of `SharedURL`s\
+    **effects** Removes the `SharedURL` with the provided `onlineResource` from the set of `SharedURL`s
 
 **concept** `ResourceProgress`[`User`, `Resource`]\
 **purpose** Track the progress of learning resources associated with concepts for a given user\
@@ -222,5 +234,88 @@ customized and enriched with resources, exercises, and benchmarks.
     **requires** In the set of `PersonalProgress`es there is a `PersonalProgress` with the provided\
       `user` and with its `ResourceProgress` associated with the provided `resource`\
     **effects** Removes the `PersonalProgress` with the provided `user` and `ResourceProgress` associated\
-      with the provided `resource` from the set of `PersonalProgress`es and removes the `ResourceProgress`
+      with the provided `resource` from the set of `PersonalProgress`es and removes the `ResourceProgress`\
       that was associated with removed `PersonalProgress` from the set of `ResourceProgress`es.
+  `removeAllProgresses`(`resource`: `Resource`)\
+    **requires** nothing\
+    **effects** Removes all `PersonalProgress`es associated with the provided `resource` from the set\
+      of `PersonalProgress`es and all `ResourceProgress`es from the set of `ResourceProgress`es
+
+There are multiple essential synchronizations that we need to consider. When user
+creates a new roadmap, we just create a new `RoadMap` in the state of `RoadBuilder`
+concept. However, deleting a roadmap is a bit more complicated, as it involves
+deleting concepts and resources associated with it.
+
+**sync** `roadmapDeletion`\
+**when**\
+  `Request.deleteRoadMap` (`user`, `roadMap`)\
+  `RoadBuilder.validateAccess` (`roadMap`, `user`)\
+**then**\
+  `RoadBuilder.deleteRoadMap` (`roadMap`, `user`)\
+  `ConceptGraph.clearGraph` (`roadMap`)\
+  `ResourceSharing.removeShareLink` (`roadMap`)\
+  `ResourceProgress.removeProgress` (`user`, `roadMap`)
+
+Also `ResourceManager` concept needs to be synchronized, but I'm not sure how to
+describe iterative removal of resources associated with multiple `Node`s in the
+concept description language.
+
+Similarly, when removing just one concept from the roadmap, we need to remove all
+resources associated with it from the set of indexed resources.
+
+**sync** `conceptRemoval`\
+**when**\
+  `Request.removeConcept` (`user`, `roadMap`, `concept`)\
+  `RoadBuilder.validateAccess` (`roadMap`, `user`)\
+**then**\
+  `ConceptGraph.removeConcept` (`concept`)\
+  `ResourceManager.clearResources` (`concept`)\
+  `ResourceProgress.removeAllProgresses` (`concept`)
+
+Adding resources to a concept is straightforward, as we just add a new
+`IndexedResource` to the set of indexed resources associated with the provided concept
+and also new `PersonalProgress` to the set of `PersonalProgress`es associated with the
+provided `user` and the new `ResourceProgress`.
+
+**sync** `resourceAddition`\
+**when**\
+  `Request.addResource` (`user`, `roadMap`, `concept`, `resource`)\
+  `RoadBuilder.validateAccess` (`roadMap`, `user`)\
+**then**\
+  `ResourceManager.addResource` (`concept`, `resource`)\
+  `ResourceProgress.addResource` (`user`, `resource`)
+
+And finally, when removing a resource from the concept, we need to also remove it from
+progress tracking.
+
+**sync** `resourceRemoval`\
+**when**\
+  `Request.removeResource` (`user`, `roadMap`, `concept`, `resource`)\
+  `RoadBuilder.validateAccess` (`roadMap`, `user`)\
+**then**\
+  `ResourceManager.removeResource` (`concept`, `resource`)\
+  `ResourceProgress.removeAllProgresses` (`resource`)
+
+These concepts are important for multiple reasons. First, we want to be able to
+segregate diffrerent roadmaps and allow users to have multiple roadmaps for different
+topics, so we need a `RoadBuilder` concept. Secondly, on the surface level, each
+roadmap is just a graph of concepts and their relationships, so we need a `ConceptGraph`
+concept, which includes the ability to create and remove concepts (represented as
+nodes) and to associate them with abstract parent (which is a roadmap in our case).
+Graph should be modifiable, but only by the owner of the roadmap, hence the
+`validateAccess` action that is involved in the syncs. For each concept, we want to be
+able to associate resources (abstract, for now) with it, so we need a `ResourceManager`
+concept that keeps track of all resources associated with a given abstract group
+(which is just a concept in our case). `ResourceManager` also keeps track of the index
+of each resource, creating the order of resources associated with a given concept,
+and also allows to remove/exchange resources, giving the user control over the order
+of resources. Users should also be able to share their roadmaps with other users, so we
+need a `ResourceSharing` concept that allows to generate shareable URLs for roadmaps
+and access them by the generated URLs, and also allows to remove the shareable URLs
+when the roadmap is deleted. Finally, we want to be able to track the progress of
+learning resources associated with concepts, so we need a `ResourceProgress` concept
+that allows to mark resources as completed or incomplete, and it is linked to deletion
+and removal of resources via syncs.
+
+## UI Sketches
+
