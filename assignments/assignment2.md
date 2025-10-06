@@ -319,3 +319,8 @@ and removal of resources via syncs.
 
 ## UI Sketches
 
+The user lands on the home page, from where they can go to their profile page, to roadmaps created
+by them, or to roadmaps of other users that they saved.
+
+<img src="assets/homepage.jpg" alt="homepage" width="200" />.
+
