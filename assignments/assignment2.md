@@ -100,78 +100,90 @@ customized and enriched with resources, exercises, and benchmarks.
 **state**\
   a set of `RoadMap`s with\
     a user `User`\
-    a title `String`
+    a title `String`\
 **actions**\
-  `createRoadMap`(`user`: `User`, `title`: `String`) -> `RoadMap`\
+  `createRoadMap`(`user`: `User`, `title`: `String`): (`roadMap`: `RoadMap`)\
     **requires** User doesn't have a roadmap with the same title\
     **effects** Creates a new roadmap with the provided `user` and `title`\
   `deleteRoadMap`(`roadMap`: `RoadMap`, `user`: `User`)\
     **requires** User has the provided `roadMap`\
     **effects** Deletes the roadmap with the provided `roadMap`\
-  `getUserRoadMap`(`user`: `User`, `title`: `String`) -> `RoadMap`\
+  `getUserRoadMap`(`user`: `User`, `title`: `String`): (`roadMap`: `RoadMap`)\
     **requires** User has a roadmap with the provided `title`\
     **effects** Returns the roadmap with the provided `title`
 
-**concept** `ConceptGraph`
+**concept** `ConceptGraph`\
 **purpose** Manage the structure of concepts and their relationships within a roadmap\
 **principle** Users can add/remove concept nodes and create/remove prerequisite\
   relationships between concepts.\
 **state**\
-  a set of `Concept`s with\
+  a set of `Node`s with\
     a roadmap `RoadMap`\
     a title `String`\
   a set of `Edge`s with\
-    a source concept `Concept`\
-    a target concept `Concept`
-
+    a source node `Node`\
+    a target node `Node`\
 **actions**\
-  `addConcept`(`roadMap`: `RoadMap`, `title`: `String`) -> `Concept`\
-  **requires** There is no concept with the provided `title` in the set of concepts\
+  `addConcept`(`roadMap`: `RoadMap`, `title`: `String`): (`concept`: `Node`)\
+  **requires** There is no node with the provided `title` in the set of nodes\
     associated with the provided `roadMap`\
-    **effects** Adds a new concept with the provided `title` to the set of concepts\
+  **effects** Adds a new node with the provided `title` to the set of nodes\
     associated with the provided `roadMap`\
-  `removeConcept`(`concept`: `Concept`) -> `Boolean`\
-    **requires** There is the provided `concept` in the set of concepts\
-    **effects** Removes the provided `concept` from the set of concepts\
-  `addEdge`(`sourceConcept`: `Concept`, `targetConcept`: `Concept`) -> `Boolean`\
-    **requires** There is no edge with the provided `sourceConcept` and `targetConcept`\
-    **effects** Adds a new edge with the provided `sourceConcept` and `targetConcept` to the set of edges\
-  `removeEdge`(`sourceConcept`: `Concept`, `targetConcept`: `Concept`) -> `Boolean`\
-    **requires** There is an edge with the provided `sourceConcept` and `targetConcept`\
-    **effects** Removes the edge with the provided `sourceConcept` and `targetConcept` from the set of edges\
+  `removeConcept`(`concept`: `Node`)\
+    **requires** There is the provided `concept` in the set of nodes\
+    **effects** Removes the provided `concept` from the set of nodes\
+  `addEdge`(`sourceConcept`: `Node`, `targetConcept`: `Node`)\
+    **requires** There is no edge with the provided `sourceConcept` and\
+       `targetConcept`, `sourceConcept` and `targetConcept` belong to the same roadmap\
+    **effects** Adds a new edge with the provided `sourceConcept` and `targetConcept`\
+       to the set of edges\
+  `removeEdge`(`sourceConcept`: `Node`, `targetConcept`: `Node`)\
+    **requires** There is an edge between the provided `sourceConcept` and `targetConcept`\
+    **effects** Removes the edge with the provided `sourceConcept` and `targetConcept` from\
+      the set of edges
 
 **concept** `ResourceManager` [`Resource`]\
-**purpose** Manage learning resources attached to concepts\
+**purpose** Attach and manage resources associated with concepts\
 **principle** Users can add various types of resources (books, videos, exercises, etc.)\
-  to concepts and remove them.
+  to concepts concepts and remove them.\
 **state**\
-  a set of `Resource`s with\
-    a concept `Concept`\
+  a set of `IndexedResource`s with\
+    a concept `Node`\
+    an index `Number`\
     a resource `Resource`\
 **actions**\
-  `addResource`(`concept`: `Concept`, `resource`: `Resource`) -> `Resource`\
-    **requires** There is no resource with the provided `title` in the set of resources\
-    associated with the provided `concept`\
-    **effects** Adds a new resource with the provided `resource` to the set of resources\
-  `removeResource`(`resource`: `Resource`)\
-    **requires** There is the provided `resource` in the set of resources\
+  `addResource`(`concept`: `Node`, `resource`: `Resource`): (`indexedResource`: `IndexedResource`)\
+    **requires** There is no indexed resource with the provided `resource` in the set of resources\
+    that have the same associated `concept` as the provided `concept`\
+    **effects** Adds a new indexed resource with the provided `resource` associated with\
+      the provided `concept` and index `Number` that is one more than the last index\
+      of indexed resources associated with the provided `concept` to the set of indexed resources\
+      and returns the new indexed resource. If there were no indexed resources associated\
+      with the provided `concept`, the index is 0.\
+  `removeResource`(`concept`: `Node`, `resource`: `Resource`)\
+    **requires** There is indexed resource with the provided `resource` associated with provided\
+      `concept` in the set of indexed resources.\
     **effects** Removes the provided `resource` from the set of resources\
-  `getResources`(`concept`: `Concept`) -> `Set<Resource>`\
-    **requires** There is the provided `concept` in the set of concepts\
-    **effects** Returns the set of resources associated with the provided `concept`\
-  `getConceptResources(conceptId: ConceptId) -> Set<ResourceId>`\
-  `updateResource(resourceId: ResourceId, title: String, url: String, description: String) -> Boolean`
+  `exchangeResources`(`indexedResource1`: `IndexedResource`, `indexedResource2`: `IndexedResource`)\
+    **requires** There are indexed resources with the provided `indexedResource1` and\
+      `indexedResource2` in the set of indexed resources\
+    **action** Exchanges the indexes of the provided `indexedResource1` and\
+      `indexedResource2` in the set of indexed resources.
 
-**concept** `RoadMapSharing` [`URL`, `User`]
+**concept** `RoadMapSharing` [`URL`, `User`]\
 **purpose** Enable sharing of roadmaps through shareable URLs\
-**principle** Users can generate shareable URLs for their roadmaps and control access permissions.\
+**principle** Users can generate shareable URLs for their roadmaps and others can access them.\
 **state**\
-  a set of `RoadMap`s with\
-    a `URL`
+  a set of `SharedURL`s with\
+    a roadmap `RoadMap`\
+    a shareable URL `URL`\
 **actions**\
-  `generateShareLink`(`roadMap`: `RoadMap`, `user`: `User`) -> `URL`\
-  **requires** There is no `URL` with the provided `roadMap` in the set of `URL`s\
-  **effects** Adds a new `URL` with the provided `roadMap` to the set of `URL`s\
-  `accessRoadMap`(`URL`: `URL`, `user`: `User`) -> `RoadMap`\
-  **requires** There is a `URL` with the provided `roadMap` in the set of `URL`s\
-  **effects** Returns the `RoadMap` associated with the provided `URL`
+  `generateShareLink`(`roadMap`: `RoadMap`): (`url`: `URL`)\
+    **requires** nothing\
+    **effects** if there is not a `SharedURL` with the provided `roadMap` in the set of `SharedURL`s,\
+      generates a new unique `URL` and adds it to the set of `SharedURL`s associated with the\
+      provided `roadMap`. If there is a `SharedURL` with the provided `roadMap` in the set of\
+      `SharedURL`s, returns the `URL` associated with the provided `roadMap`\
+  `accessRoadMap`(`url`: `URL`): (`roadMap`: `RoadMap`)\
+    **requires** There is a `SharedURL` with the provided `url` in the set of `SharedURL`s\
+    **effects** Returns the `RoadMap` associated with the provided `URL`
