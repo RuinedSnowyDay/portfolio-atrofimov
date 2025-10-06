@@ -111,14 +111,17 @@ customized and enriched with resources, exercises, and benchmarks.
   `getUserRoadMap`(`user`: `User`, `title`: `String`): (`roadMap`: `RoadMap`)\
     **requires** User has a roadmap with the provided `title`\
     **effects** Returns the roadmap with the provided `title`
+  `validateAccess`(`roadMap`: `RoadMap`, `user`: `User`)\
+    **requires** User has the provided `roadMap`\
+    **effects** Validates the access to the provided `roadMap`\
 
-**concept** `ConceptGraph`\
-**purpose** Manage the structure of concepts and their relationships within a roadmap\
+**concept** `ConceptGraph` [`Parent`]\
+**purpose** Manage the structure of concepts and their relationships within a parent structure (e.g. roadmap)\
 **principle** Users can add/remove concept nodes and create/remove prerequisite\
   relationships between concepts.\
 **state**\
   a set of `Node`s with\
-    a roadmap `RoadMap`\
+    a parent `Parent`\
     a title `String`\
   a set of `Edge`s with\
     a source node `Node`\
@@ -142,67 +145,82 @@ customized and enriched with resources, exercises, and benchmarks.
     **effects** Removes the edge with the provided `sourceConcept` and `targetConcept` from\
       the set of edges
 
-**concept** `ResourceManager` [`Resource`]\
-**purpose** Attach and manage resources associated with concepts\
+**concept** `ResourceManager` [`Resource`, `Group`]\
+**purpose** Attach and manage resources associated with concepts (abstract groups)\
 **principle** Users can add various types of resources (books, videos, exercises, etc.)\
   to concepts concepts and remove them.\
 **state**\
   a set of `IndexedResource`s with\
-    a concept `Node`\
+    a group `Group`\
     an index `Number`\
     a resource `Resource`\
 **actions**\
-  `addResource`(`concept`: `Node`, `resource`: `Resource`): (`indexedResource`: `IndexedResource`)\
+  `addResource`(`group`: `Group`, `resource`: `Resource`): (`indexedResource`: `IndexedResource`)\
     **requires** There is no indexed resource with the provided `resource` in the set of resources\
-    that have the same associated `concept` as the provided `concept`\
+    that have the same associated `group` as the provided `group`\
     **effects** Adds a new indexed resource with the provided `resource` associated with\
-      the provided `concept` and index `Number` that is one more than the last index\
-      of indexed resources associated with the provided `concept` to the set of indexed\
+      the provided `group` and index `Number` that is one more than the last index\
+      of indexed resources associated with the provided `group` to the set of indexed\
       resources and returns the new indexed resource. If there were no indexed resources\
-      associated with the provided `concept`, the index is 0\
-  `removeResource`(`concept`: `Node`, `resource`: `Resource`)\
+      associated with the provided `group`, the index is 0\
+  `removeResource`(`group`: `Group`, `resource`: `Resource`)\
     **requires** There is indexed resource with the provided `resource` associated\
-      with provided `concept` in the set of indexed resources\
+      with provided `group` in the set of indexed resources\
     **effects** Removes the provided `resource` from the set of resources\
   `exchangeResources`(`idxResource1`: `IndexedResource`, `idxResource2`: `IndexedResource`)\
     **requires** There are indexed resources with the provided `idxResource1` and\
       `idxResource2` in the set of indexed resources\
-    **action** Exchanges the indexes of the provided `indexedResource1` and\
-      `indexedResource2` in the set of indexed resources.
+    **action** Exchanges the indexes of the provided `idxResource1` and\
+      `idxResource2` in the set of indexed resources.
 
-**concept** `RoadMapSharing` [`URL`]\
-**purpose** Enable sharing of roadmaps through shareable URLs\
+**concept** `ResourceSharing` [`OnlineResource`, `URL`]\
+**purpose** Enable sharing of resources through shareable URLs\
 **principle** Users can generate shareable URLs for their roadmaps and others can access\
   them.\
 **state**\
   a set of `SharedURL`s with\
-    a roadmap `RoadMap`\
+    a online resource `OnlineResource`\
     a shareable URL `URL`\
 **actions**\
-  `generateShareLink`(`roadMap`: `RoadMap`): (`url`: `URL`)\
+  `generateShareLink`(`onlineResource`: `OnlineResource`): (`url`: `URL`)\
     **requires** nothing\
-    **effects** if there is not a `SharedURL` with the provided `roadMap` in the set of\
+    **effects** if there is not a `SharedURL` with the provided `onlineResource` in the set of\
       `SharedURL`s, generates a new unique `URL` and adds it to the set of `SharedURL`s\
-      associated with the provided `roadMap`. If there is a `SharedURL` with the provided\
-      `roadMap` in the set of `SharedURL`s, returns the `URL` associated with the provided\
-      `roadMap`\
-  `accessRoadMap`(`url`: `URL`): (`roadMap`: `RoadMap`)\
+      associated with the provided `onlineResource`. If there is a `SharedURL` with the provided\
+      `onlineResource` in the set of `SharedURL`s, returns the `URL` associated with the provided\
+      `onlineResource`\
+  `accessResource`(`url`: `URL`): (`onlineResource`: `OnlineResource`)\
     **requires** There is a `SharedURL` with the provided `url` in the set of `SharedURL`s\
-    **effects** Returns the `RoadMap` associated with the provided `URL`
+    **effects** Returns the `OnlineResource` associated with the provided `URL`
 
-**concept** `ResourceProgress`\
-**purpose** Track the progress of learning resources associated with concepts\
-**principle** Users can mark resources as completed or incompleted\
+**concept** `ResourceProgress`[`User`, `Resource`]\
+**purpose** Track the progress of learning resources associated with concepts for a given user\
+**principle** Users can mark resources as completed or incompleted, and it is going to be visible only\
+  to them\
 **state**\
-  a set of `ResourceProgress`s with\
-    a indexed resource `IndexedResource`\
+  a set of `ResourceProgress`es with\
+    a resource `Resource`\
     a completed status `Boolean`\
+  a set of `PersonalProgress`s with\
+    a user `User`\
+    a personal progress `ResourceProgress`\
 **actions**\
-  `markAsCompleted`(`resource`: `IndexedResource`)\
-    **requires** There is a `ResourceProgress` with the provided `resource` in the set\
-      of `ResourceProgress`s and its status is incomplete\
-    **effects** Marks the provided `resource` as completed\
-  `markAsIncomplete`(`resource`: `Resource`)\
-    **requires** There is a `ResourceProgress` with the provided `resource` in the set\
-      of `ResourceProgress`s and its status is completed
-    **effects** Marks the provided `resource` as incomplete
+  `addResource`(`user`: `User`, `resource`: `Resource`)\
+    **requires** nothing\
+    **effects** Adds a new `ResourceProgress` with the provided `resource` and incomplete status to the set\
+      of `ResourceProgress`es and adds a new `PersonalProgress` with the provided `user` and the new\
+      `ResourceProgress` to the set of `PersonalProgress`es\
+  `markAsCompleted`(`user`: `User`, `resource`: `Resource`)\
+    **requires** In the set of `PersonalProgress`es there is a `PersonalProgress` with the provided\
+      `user` and in the set such that its `resource` is the provided `resource` and its status is incomplete\
+    **effects** Marks the `ResourceProgress` associated with the provided `user` and `resource` as completed\
+  `markAsIncomplete`(`user`: `User`, `resource`: `Resource`)\
+    **requires** In the set of `PersonalProgress`es there is a `PersonalProgress` with the provided\
+      `user` and in the set such that its `resource` is the provided `resource` and its status is completed\
+    **effects** Marks the `ResourceProgress` associated with the provided `user` and `resource` as incomplete
+  `removeProgress`(`user`: `User`, `resource`: `Resource`)\
+    **requires** In the set of `PersonalProgress`es there is a `PersonalProgress` with the provided\
+      `user` and with its `ResourceProgress` associated with the provided `resource`\
+    **effects** Removes the `PersonalProgress` with the provided `user` and `ResourceProgress` associated\
+      with the provided `resource` from the set of `PersonalProgress`es and removes the `ResourceProgress`
+      that was associated with removed `PersonalProgress` from the set of `ResourceProgress`es.
