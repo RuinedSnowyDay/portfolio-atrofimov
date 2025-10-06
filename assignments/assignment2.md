@@ -322,5 +322,44 @@ and removal of resources via syncs.
 The user lands on the home page, from where they can go to their profile page, to roadmaps created
 by them, or to roadmaps of other users that they saved.
 
-<img src="assets/homepage.jpg" alt="homepage" width="200" />.
+![Home page](../assets/homepage.png)
 
+When the user is on the concept map page of their roadmap, they can see the concept
+map itself, share it, add/remove concepts and relationships between them, progress on
+different concepts, and open the resource page for each concept.
+
+![Concept map page](../assets/concept_map_edit.png)
+
+When the user is on the resource page of a concept associated with their roadmap, they
+can see the resources, add new ones or remove existing ones, and mark them as completed or incomplete.
+
+![Resource page](../assets/enrichment_edit.png)
+
+The user can also open other users' roadmaps, but they can't edit them. Other users'
+concept maps lack editing features, but still allow to view the resources and track
+the progress on them. The user can also visit other users' profile pages.
+
+![Other user's roadmap](../assets/concept_map_other.png)
+
+On the resource page of another user's concept, the user can see the resources and
+track the progress on them, but they can't edit them. They can also save the roadmap
+to access it later.
+
+![Other user's resource page](../assets/enrichment_other.png)
+
+The user can also visit other users' profile pages, where they can see the roadmaps
+they created and shared.
+
+![Other user's profile page](../assets/user_profile.png)
+
+## User Journey
+
+The user lands on the home page, creates their first roadmap, adds concepts to it and
+connectes them with each other. After doing some metalearning, they add learning resources
+(videos, books, exercises, etc.) to the concepts. After that, they can share their roadmap
+or just keep it private and follow them on their own by checking the progress in each
+concept.
+
+The user can also open links to other users' roadmaps, potentially saving them for later.
+On other users' concept maps and resource pages, they can view the concepts and resources,
+and check their own progress on them, as they progress through the concepts and resources.
